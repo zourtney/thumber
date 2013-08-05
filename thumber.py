@@ -1,7 +1,9 @@
-# Tiny Image Cacher
-#
-# By zourtney
-# 2013-08-01
+"""@packgae thumber
+Thumber
+Image downsizing manager class
+
+(zourtney, August 2013)
+"""
 import os
 import copy
 import shutil

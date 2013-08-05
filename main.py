@@ -1,15 +1,19 @@
+"""
+Thumber main driver program
+A bare-bones, ignorant implementation of a thumbnailing web service.
+
+(zourtney, August 2013)
+"""
 import os
 from flask import Flask, abort, send_file
 from apscheduler.scheduler import Scheduler
 from thumber import Thumber
 import datetime
 
+# Serve images out of './public'. Store downsized images in './cache'.
 CUR_PATH = os.path.dirname(os.path.realpath(__file__))
 SRC_PATH = '%s/%s' % (CUR_PATH, 'public')
 DEST_PATH = '%s/%s' % (CUR_PATH, 'cache')
-
-app = Flask(__name__)
-app.debug = True
 
 caches = {}
 
@@ -26,6 +30,9 @@ def destroy_old_thumbnails():
 """
 Web interface that takes a target image size and filepath
 """
+app = Flask(__name__)
+app.debug = True
+
 @app.route('/<size>/<path:filename>/')
 def view_image(size, filename):
     try:
